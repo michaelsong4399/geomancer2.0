@@ -16,21 +16,26 @@ public class SlimeGen : MonoBehaviour
     void Start()
     {
         slimePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Slime.prefab", typeof(GameObject)) as GameObject;
-        for (int i = 0; i < numSlimes; i++)
+        spawnSlimes(10, 2, 1);
+    }
+    void spawnSlimes(int numSmall, int numMedium, int numLarge)
+    {
+        spawnSlimesWithSize(0, numSmall);
+        spawnSlimesWithSize(1, numMedium);
+        spawnSlimesWithSize(2, numLarge);
+    }
+    void spawnSlimesWithSize(int slimeSize, int num)
+    {
+        for (int i = 0; i < num; i++)
         {
             // instantiate on unit circle with random radius
             float angle = Random.Range(0, 2 * Mathf.PI);
             float radius = Random.Range(minSpawnRadius, maxSpawnRadius);
             Vector3 pos = new Vector3(radius * Mathf.Cos(angle), 0, radius * Mathf.Sin(angle));
-            Instantiate(slimePrefab, pos, Quaternion.identity);
-
-            // Vector3 spawnPos = transform.position + Random.insideUnitSphere * spawnRadius;
-            // spawnPos = new Vector3(spawnPos.x, 0, spawnPos.z);
-            // Instantiate(slimePrefab, spawnPos, Quaternion.identity);
+            GameObject newSlime = Instantiate(slimePrefab, pos, Quaternion.identity);
+            newSlime.GetComponent<Slime>().initStats(slimeSize);
         }
-
     }
-
     // Update is called once per frame
     void Update()
     {
