@@ -13,7 +13,7 @@ public class RockGen : MonoBehaviour
     {
         rockPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Rock.prefab", typeof(GameObject)) as GameObject;
         // Load rockprefab
-        spawnRocks(numRocks);
+        spawnRocks(numRocks-1);
     }
     void spawnRocks(int num)
     {
