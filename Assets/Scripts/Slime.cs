@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slime : MonoBehaviour
 {
-    static int [] hpBySize = {2, 2, 3};
+    static int [] hpBySize = {2, 2, 10};
     static int [] scaleBySize = {50, 150, 600};
     static float [] speedBySize = {0.1f, 0.05f, 0.03f};
     public int size = 0;
@@ -36,7 +36,9 @@ public class Slime : MonoBehaviour
         if (other.transform.gameObject.tag == tagToCollideWith) //&& other.transform.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.01f)
         {
             hp -= 1;
-            rend.material.SetColor("_Color", Color.red); //set color not working
+            // smoothly transition color from green to red based on percent hp
+            rend.material.color = Color.Lerp(Color.green, Color.red, 1 - (float)hp / hpBySize[size]);
+            // rend.material.color = new Color(1, (float)hp / hpBySize[size], (float)hp / hpBySize[size]);
             Destroy(other.transform.gameObject);
             if (hp <= 0)
             {

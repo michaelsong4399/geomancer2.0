@@ -26,6 +26,10 @@ public class Rock : MonoBehaviour
         speed = 1f;
         input = GameObject.Find("GetInput").GetComponent<TriggerReader>();
     }
+    public void initStats(float rockSize)
+    {
+        gameObject.transform.localScale *= rockSize;
+    }
     public void select()
     {
         selected = true;
@@ -78,8 +82,6 @@ public class Rock : MonoBehaviour
             //use derivative of logistic function for speed such that it speeds up and then slows down
             float dist = Vector3.Distance(gameObject.transform.position, target.transform.position);
             speed = 20*Mathf.Exp(2/initDist*dist - initDist/2) / Mathf.Pow((1 + Mathf.Exp(2/initDist*dist - initDist/2)), 2) + 10f;
-            //Debug.Log(speed);
-            //Debug.Log(speed * Time.deltaTime);
 
             direction = target.transform.position - gameObject.transform.position;
             Vector3.Normalize(direction);
