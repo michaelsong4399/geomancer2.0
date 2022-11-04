@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using UnityEditor;
 
 public class Slime : MonoBehaviour
 {
@@ -13,10 +15,12 @@ public class Slime : MonoBehaviour
     private GameObject player;
     private MeshRenderer rend;
     public string tagToCollideWith = "Rock";
+    private ParticleSystem particlePrefab;
 
     // Start is called before the first frame update
     void Start()
     { 
+        particlePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Particle_SlimeDestroy.prefab", typeof(ParticleSystem)) as ParticleSystem;
         player = GameObject.Find("XR Origin").transform.
         Find("Camera Offset").transform.
         Find("Main Camera").transform.
@@ -37,12 +41,15 @@ public class Slime : MonoBehaviour
         {
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
-            rend.material.color = Color.Lerp(Color.green, Color.red, 1 - (float)hp / hpBySize[size]);
-            // rend.material.color = new Color(1, (float)hp / hpBySize[size], (float)hp / hpBySize[size]);
+            rend.material.color = Color.Lerp(Color.green, Color.red, 1 - 0.5f * (float)hp / hpBySize[size]);
+            
             Destroy(other.transform.gameObject);
             if (hp <= 0)
             {
-                Destroy(gameObject);
+                // Instantiate particle 
+                ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
+                newParticle.GetComponent<ParticleSystem>().Play();
+                Destroy(gameObject, 0.1f);
             }
         }
     }

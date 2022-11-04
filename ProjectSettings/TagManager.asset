@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rock
+  - Particle_SlimeDestroy
   layers:
   - Default
   - TransparentFX
