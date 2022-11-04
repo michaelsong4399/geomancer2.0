@@ -16,7 +16,7 @@ public class SlimeGen : MonoBehaviour
     void Start()
     {
         slimePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Slime.prefab", typeof(GameObject)) as GameObject;
-        spawnSlimes(10, 2, 1);
+        spawnSlimes(3, 0, 0);
     }
     void spawnSlimes(int numSmall, int numMedium, int numLarge)
     {

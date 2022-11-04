@@ -6,8 +6,8 @@ using UnityEditor;
 
 public class Slime : MonoBehaviour
 {
-    static int [] hpBySize = {2, 2, 10};
-    static int [] scaleBySize = {50, 150, 600};
+    static int [] hpBySize = {1, 2, 10};
+    static int [] scaleBySize = {70, 150, 600};
     static float [] speedBySize = {0.1f, 0.05f, 0.03f};
     public int size = 0;
     private int hp;
@@ -37,7 +37,7 @@ public class Slime : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.gameObject.tag == tagToCollideWith) //&& other.transform.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0.01f)
+        if (other.transform.gameObject.tag == tagToCollideWith && other.transform.gameObject.GetComponent<Rock>().thrown == true)
         {
             hp -= 1;
             // smoothly transition color from green to red based on percent hp

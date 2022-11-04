@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Rock : MonoBehaviour
 {
     public GameObject target;
     private bool selected = false;
-    private bool activated = false;
+    public static GameObject activated = null;
     private bool justActivated = false;
-    private bool thrown = false;
+    public bool thrown = false;
     //private bool released = false;
     public Rigidbody rb;
     Vector3 direction;
@@ -23,6 +24,8 @@ public class Rock : MonoBehaviour
     {
         //need to add code to get target object so it does not need to be set in Inspector
         rb = gameObject.GetComponent<Rigidbody>();
+        gameObject.GetComponent<XRSimpleInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
+        target = GameObject.Find("XR Origin").transform.Find("Camera Offset").transform.Find("RightHand Controller").transform.Find("Target").gameObject;
         speed = 1f;
         input = GameObject.Find("GetInput").GetComponent<TriggerReader>();
     }
@@ -40,9 +43,9 @@ public class Rock : MonoBehaviour
     }
     public void activate()
     {
-        if (!activated)
+        if (activated == null && !thrown)
         {
-            activated = true;
+            activated = this.gameObject;
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
             justActivated = true;
@@ -51,11 +54,11 @@ public class Rock : MonoBehaviour
     }
     public void deactivate()
     {
-        activated = false;
-        justActivated = false;
-        if (Vector3.Distance(prevPos, gameObject.transform.position) <= 0.001f)
+        activated = null;
+        if (Vector3.Distance(prevPos, gameObject.transform.position) <= 0.01f || justActivated)
         {
             rb.useGravity = true;
+            justActivated = false;
         }
         else
         {
@@ -72,7 +75,7 @@ public class Rock : MonoBehaviour
             if (selected)
                 activate();
         }
-        else if (activated)
+        else if (activated == this.gameObject)
         {
             deactivate();
         }
@@ -95,13 +98,19 @@ public class Rock : MonoBehaviour
                 gameObject.transform.position += direction * speed * Time.deltaTime;
             }
         }
-        else if (activated)
+        else if (activated == this.gameObject)
         {
             speed = 30f;
             direction = target.transform.position - gameObject.transform.position;
             Vector3.Normalize(direction);
             gameObject.transform.position += direction * speed * Time.deltaTime;
-            //gameObject.transform.position = target.transform.position;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Floor" && thrown)
+        {
+            thrown = false;
         }
     }
 }
