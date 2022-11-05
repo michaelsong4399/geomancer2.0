@@ -16,13 +16,13 @@ public class SlimeGen : MonoBehaviour
     void Start()
     {
         slimePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Slime.prefab", typeof(GameObject)) as GameObject;
-        spawnSlimes(3, 0, 0);
+        spawnSlimes(numSlimes, 5, 1);
     }
     void spawnSlimes(int numSmall, int numMedium, int numLarge)
     {
-        spawnSlimesWithSize(0, numSmall);
-        spawnSlimesWithSize(1, numMedium);
-        spawnSlimesWithSize(2, numLarge);
+        spawnSlimesWithSize(1, numSmall);
+        spawnSlimesWithSize(2, numMedium);
+        spawnSlimesWithSize(3, numLarge);
     }
     void spawnSlimesWithSize(int slimeSize, int num)
     {

@@ -6,11 +6,12 @@ using UnityEditor;
 
 public class Slime : MonoBehaviour
 {
-    static int [] hpBySize = {1, 2, 10};
-    static int [] scaleBySize = {70, 150, 600};
-    static float [] speedBySize = {0.1f, 0.05f, 0.03f};
+    // static int [] hpBySize = {1, 2, 10};
+    // static int [] scaleBySize = {70, 150, 600};
+    // static float [] speedBySize = {0.1f, 0.05f, 0.03f};
     public int size = 0;
     private int hp;
+    private int maxHp;
     private float speed;
     private GameObject player;
     private MeshRenderer rend;
@@ -31,9 +32,10 @@ public class Slime : MonoBehaviour
     public void initStats(int slimeSize)
     {
         size = slimeSize;
-        hp = hpBySize[size];
-        speed = speedBySize[size];
-        gameObject.transform.localScale *= scaleBySize[size];
+        hp = size;
+        maxHp = size;
+        speed = 0.1f / (float)size;
+        gameObject.transform.localScale *= 100*size;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -41,7 +43,7 @@ public class Slime : MonoBehaviour
         {
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
-            rend.material.color = Color.Lerp(Color.green, Color.red, 1 - 0.5f * (float)hp / hpBySize[size]);
+            rend.material.color = Color.Lerp(Color.green, Color.red, 1 - 0.5f * (float)hp / maxHp);
             
             Destroy(other.transform.gameObject);
             if (hp <= 0)
@@ -52,6 +54,13 @@ public class Slime : MonoBehaviour
                 Destroy(gameObject, 0.1f);
             }
         }
+        // If slime collides with another slime, merge into a larger slime
+        // if (other.transform.gameObject.tag == "Slime")
+        // {
+        //     Slime otherSlime = other.transform.gameObject.GetComponent<Slime>();
+        //     Destroy(gameObject);
+
+        // }
     }
     // Update is called once per frame
     void Update()
