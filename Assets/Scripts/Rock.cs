@@ -18,11 +18,13 @@ public class Rock : MonoBehaviour
     float initDist;
     Vector3 prevPos;
     TriggerReader input;
+    public AudioSource RockFall;
 
     // Start is called before the first frame update
     void Start()
     {
         //need to add code to get target object so it does not need to be set in Inspector
+        FindObjectOfType<AudioManager>().Play("RockFall");
         rb = gameObject.GetComponent<Rigidbody>();
         gameObject.GetComponent<XRSimpleInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
         target = GameObject.Find("XR Origin").transform.Find("Camera Offset").transform.Find("RightHand Controller").transform.Find("Target").gameObject;
@@ -108,6 +110,10 @@ public class Rock : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.name == "Floor")
+        {
+            FindObjectOfType<AudioManager>().Play("RockFall");
+        }
         if (collision.gameObject.name == "Floor" && thrown)
         {
             thrown = false;

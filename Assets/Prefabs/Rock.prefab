@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1666803814007857056}
   - component: {fileID: 7322639612877918449}
   - component: {fileID: 7322639612877918447}
+  - component: {fileID: 194682900961885855}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Rock
@@ -128,7 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  thrown: 0
   rb: {fileID: 7322639612877918451}
+  RockFall: {fileID: 0}
 --- !u!114 &7322639612877918447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,3 +246,19 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &194682900961885855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592598655272129718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f63c10bdf154493ba9550d243c9ee35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _replacement: {fileID: 4025919737830003387, guid: cfb60d3b94b8c4abe824ce231fa012c7, type: 3}
+  _breakForce: 20
+  _collisionMultiplier: 10
+  _broken: 0
