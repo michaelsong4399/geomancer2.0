@@ -20,8 +20,8 @@ public class RockGen : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             float angle = Random.Range(0, 2 * Mathf.PI);
-            float height = Random.Range(5, 10);
-            float radius = Random.Range(4, 5);
+            float height = Random.Range(3, 4);
+            float radius = Random.Range(2, 4);
             Vector3 pos = this.transform.position + new Vector3(radius * Mathf.Cos(angle), height, radius * Mathf.Sin(angle));
             GameObject newRock = Instantiate(rockPrefab, pos, Quaternion.identity);
             // Randomize rock size

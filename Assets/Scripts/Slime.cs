@@ -34,8 +34,8 @@ public class Slime : MonoBehaviour
         size = slimeSize;
         hp = size;
         maxHp = size;
-        speed = 0.1f / (float)size;
-        gameObject.transform.localScale *= 100*size;
+        speed = 0.05f / (float)size;
+        gameObject.transform.localScale *= 150*size;
     }
     private void OnTriggerEnter(Collider other)
     {

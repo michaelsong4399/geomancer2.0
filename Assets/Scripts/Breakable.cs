@@ -9,7 +9,9 @@ public class Breakable : MonoBehaviour {
         if(_broken) return;
         if (collision.relativeVelocity.magnitude >= _breakForce) {
             _broken = true;
-            var replacement = Instantiate(_replacement, transform.position, transform.rotation);
+            GameObject replacement = Instantiate(_replacement, transform.position, transform.rotation);
+            // Set the scale of replacement to be the same as the original
+            replacement.transform.localScale = transform.localScale;
  
             var rbs = replacement.GetComponentsInChildren<Rigidbody>();
             foreach (var rb in rbs) {
@@ -17,6 +19,9 @@ public class Breakable : MonoBehaviour {
             }
  
             Destroy(gameObject);
+            Destroy(replacement, 5.0f);
+            
+
         }
     }
 }

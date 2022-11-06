@@ -259,6 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _replacement: {fileID: 4025919737830003387, guid: cfb60d3b94b8c4abe824ce231fa012c7, type: 3}
-  _breakForce: 20
+  _breakForce: 8
   _collisionMultiplier: 10
   _broken: 0
