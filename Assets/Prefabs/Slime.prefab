@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1508544578600540242}
   - component: {fileID: 8930333880710197804}
   - component: {fileID: 8701350716205194323}
+  - component: {fileID: 6120954603145315352}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Slime
@@ -73,10 +74,24 @@ BoxCollider:
   m_GameObject: {fileID: 5588638911716988823}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.020000003, y: 0.011838706, z: 0.020000005}
   m_Center: {x: 0.0000000013969839, y: 0.005919353, z: -0.0000000018626451}
+--- !u!64 &6120954603145315352
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5588638911716988823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &4117221429199451470
 PrefabInstance:
   m_ObjectHideFlags: 0
