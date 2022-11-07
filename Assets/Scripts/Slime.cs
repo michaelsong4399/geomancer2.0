@@ -37,15 +37,15 @@ public class Slime : MonoBehaviour
         speed = 0.05f / (float)size;
         gameObject.transform.localScale *= 150*size;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.transform.gameObject.tag == tagToCollideWith && other.transform.gameObject.GetComponent<Rock>().thrown == true)
+        if (collision.gameObject.tag == tagToCollideWith && collision.gameObject.GetComponent<Rock>().thrown == true)
         {
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
             rend.material.color = Color.Lerp(Color.green, Color.red, 1 - 0.5f * (float)hp / maxHp);
             
-            // Destroy(other.transform.gameObject);
+            // Destroy(collision.gameObject);
             if (hp <= 0)
             {
                 // Instantiate particle 
