@@ -110,10 +110,6 @@ public class Rock : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Floor")
-        {
-            FindObjectOfType<AudioManager>().Play("RockFall");
-        }
         if (collision.gameObject.name == "Floor" && thrown)
         {
             thrown = false;
