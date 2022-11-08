@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Rock : MonoBehaviour
 {
     public GameObject target;
+    private AudioManager audio;
     private bool selected = false;
     public static GameObject activated = null;
     private bool justActivated = false;
@@ -24,10 +25,10 @@ public class Rock : MonoBehaviour
     void Start()
     {
         //need to add code to get target object so it does not need to be set in Inspector
-        FindObjectOfType<AudioManager>().Play("RockFall");
         rb = gameObject.GetComponent<Rigidbody>();
         gameObject.GetComponent<XRSimpleInteractable>().interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
         target = GameObject.Find("XR Origin").transform.Find("Camera Offset").transform.Find("RightHand Controller").transform.Find("Target").gameObject;
+        audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         speed = 1f;
         input = GameObject.Find("GetInput").GetComponent<TriggerReader>();
     }
@@ -110,9 +111,20 @@ public class Rock : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Floor" && thrown)
+        if (collision.gameObject.name == "Floor")
         {
-            thrown = false;
+            if (thrown)
+            {
+                thrown = false;
+            }
+            else
+            {
+                audio.Play("RockFall", this.gameObject.transform.position);
+            }
         }
+    }
+    private void OnDestroy()
+    {
+        audio.Play("RockDestroy", this.gameObject.transform.position);
     }
 }
