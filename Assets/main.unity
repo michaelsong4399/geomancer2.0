@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 614393263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0691e93bb4c6b47e39036fee2673ef1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 575433285d2044f46bb286fb39e7469c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   numRocks: 10
@@ -329,7 +329,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7322639612877918449, guid: 055d8a094e148ab4cb3f9fadd1c83590, type: 3}
+    - {fileID: 194682900961885855, guid: 055d8a094e148ab4cb3f9fadd1c83590, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 055d8a094e148ab4cb3f9fadd1c83590, type: 3}
 --- !u!1 &869242999
 GameObject:
@@ -360,9 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5607d67ef47e34f698eb537b38d4afdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numSlimes: 30
-  minSpawnRadius: 40
-  maxSpawnRadius: 90
 --- !u!4 &869243001
 Transform:
   m_ObjectHideFlags: 0
@@ -1281,6 +1280,43 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!1 &1385022689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7592598655272129718, guid: 055d8a094e148ab4cb3f9fadd1c83590, type: 3}
+  m_PrefabInstance: {fileID: 645233062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1385022690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385022689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67635b13ba9ac49dda858555f5ccbe90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _replacement: {fileID: 4025919737830003387, guid: cfb60d3b94b8c4abe824ce231fa012c7, type: 3}
+  _breakForce: 1
+  _collisionMultiplier: 100
+  _broken: 0
+--- !u!114 &1385022692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385022689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e1fff468dd44bb79caac51b41d7bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  thrown: 0
+  rb: {fileID: 0}
+  RockFall: {fileID: 0}
 --- !u!1 &1513105062
 GameObject:
   m_ObjectHideFlags: 0

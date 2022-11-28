@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public GameState state;
-    public static event Action<GameState> onGameStateChanged;
+    // public static event Action<GameState> onGameStateChanged;
 
     void Awake()
     {
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         state = newState;
 
-        switch (State){
+        switch (state){
             case GameState.spawn:
                 Debug.Log("Spawn");
                 break;
@@ -46,11 +46,11 @@ public class GameManager : MonoBehaviour
             case GameState.lose:
                 Debug.Log("Lose");
                 break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(newState),newState,null);
+            // default:
+                // throw new ArgumentOutOfRangeException(nameof(newState),newState,null);
         }
 
-        onGameStateChanged?.Invoke(state);
+        // onGameStateChanged?.Invoke(state);
     }
     
 }
