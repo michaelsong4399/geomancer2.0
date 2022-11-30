@@ -26,4 +26,12 @@ public class StatsRecorder : MonoBehaviour
         numThrown++;
         playerAccuracy = (float)numThrown / numHit;
     }
+
+    void zombieHit()
+    {
+        numHit++;
+        if (numThrown > 0)
+        {
+            playerAccuracy = (float)numThrown / numHit;
+        }
 }
