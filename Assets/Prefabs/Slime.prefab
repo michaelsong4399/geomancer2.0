@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4277800893518743286}
   - component: {fileID: 7974785031102654635}
   - component: {fileID: 8329060840922545641}
-  - component: {fileID: 398632507462313621}
+  - component: {fileID: 5585203481071275380}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Slime
@@ -114,7 +114,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2540817853737639666, guid: 3f5a6ebfb279ff049ade3fefbafa3884, type: 3}
---- !u!114 &398632507462313621
+--- !u!114 &5585203481071275380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5588638911716988823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f36da0c764ae403e9ecd59a2304c8c0, type: 3}
+  m_Script: {fileID: 11500000, guid: d03fa32e1951448c78dabfc9595f99ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1

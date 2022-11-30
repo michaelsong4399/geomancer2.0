@@ -146,7 +146,7 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5921951682068833764}
         m_TargetAssemblyTypeName: Rock, Assembly-CSharp
         m_MethodName: select
         m_Mode: 1
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_HoverExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5921951682068833764}
         m_TargetAssemblyTypeName: Rock, Assembly-CSharp
         m_MethodName: deselect
         m_Mode: 1
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5921951682068833764}
         m_TargetAssemblyTypeName: Rock, Assembly-CSharp
         m_MethodName: activate
         m_Mode: 1
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _replacement: {fileID: 4025919737830003387, guid: cfb60d3b94b8c4abe824ce231fa012c7, type: 3}
-  _breakForce: 2
+  _breakForce: 10
   _collisionMultiplier: 10
   _broken: 0
 --- !u!114 &5921951682068833764
