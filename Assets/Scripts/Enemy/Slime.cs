@@ -27,7 +27,6 @@ public class Slime : MonoBehaviour
         rend = gameObject.GetComponentInChildren<MeshRenderer>();
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
-        soundTimer = Random.Range(0f, 20f);
     }
     public void initStats(int slimeSize)
     {
