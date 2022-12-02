@@ -46,7 +46,7 @@ public class Slime : MonoBehaviour
         {
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
-            rend.material.color = Color.Lerp(Color.green, Color.red, 1 - 0.5f * (float)hp / maxHp);
+            rend.material.color = Color.Lerp(initColor, Color.red, 1 - 0.5f * (float)hp / maxHp);
             
             // Destroy(collision.gameObject);
             if (hp <= 0)

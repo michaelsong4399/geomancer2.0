@@ -23,4 +23,9 @@ public class StatsRecorder : MonoBehaviour
     {
         score += points;
     }
+
+    int getScore()
+    {
+        return score;
+    }
 }
