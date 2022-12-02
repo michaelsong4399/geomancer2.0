@@ -4,35 +4,23 @@ using UnityEngine;
 
 public class StatsRecorder : MonoBehaviour
 {
-    public int numThrown = 0;
-    public int numHit = 0;
-    public float playerAccuracy = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int numThrown = 0;
+    private int numHit = 0;
+    private int score = 0;
+    private int highScore = 0;
 
     void rockThrown ()
     {
         numThrown++;
-        playerAccuracy = (float)numThrown / numHit;
     }
 
-    void zombieHit()
+    void hit()
     {
         numHit++;
-        if (numThrown > 0)
-        {
-            playerAccuracy = (float)numThrown / numHit;
-        }
+    }
+
+    void increaseScore(int points)
+    {
+        score += points;
     }
 }

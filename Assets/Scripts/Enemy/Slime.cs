@@ -28,7 +28,7 @@ public class Slime : MonoBehaviour
         rend = gameObject.GetComponentInChildren<MeshRenderer>();
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
-        anim.Play("mixamo_com", -1, Random.Range(0, 1f));
+        anim.Play("mixamo_com", -1, Random.Range(0, 1f)); //randomizes anim start frame
     }
     public void initStats(int slimeSize)
     {
