@@ -12,10 +12,11 @@ public class Slime : MonoBehaviour
     private int maxHp;
     private float speed;
     private GameObject player;
-    private MeshRenderer rend;
+    public SkinnedMeshRenderer rend;
     public string tagToCollideWith = "Rock";
     private ParticleSystem particlePrefab;
     public Animator anim;
+    private Color initColor;
 
     // Start is called before the first frame update
     void Start()
@@ -25,10 +26,11 @@ public class Slime : MonoBehaviour
         Find("Camera Offset").transform.
         Find("Main Camera").transform.
         Find("Player").gameObject;
-        rend = gameObject.GetComponentInChildren<MeshRenderer>();
+        //rend = gameObject.GetComponentInChildren<MeshRenderer>();
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
         anim.Play("mixamo_com", -1, Random.Range(0, 1f)); //randomizes anim start frame
+        initColor = rend.material.color;    
     }
     public void initStats(int slimeSize)
     {
