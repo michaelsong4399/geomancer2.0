@@ -15,6 +15,7 @@ public class Slime : MonoBehaviour
     private MeshRenderer rend;
     public string tagToCollideWith = "Rock";
     private ParticleSystem particlePrefab;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class Slime : MonoBehaviour
         rend = gameObject.GetComponentInChildren<MeshRenderer>();
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
+        //anim["mixamo"].time = 1.0;
     }
     public void initStats(int slimeSize)
     {

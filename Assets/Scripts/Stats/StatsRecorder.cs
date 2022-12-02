@@ -34,4 +34,5 @@ public class StatsRecorder : MonoBehaviour
         {
             playerAccuracy = (float)numThrown / numHit;
         }
+    }
 }
