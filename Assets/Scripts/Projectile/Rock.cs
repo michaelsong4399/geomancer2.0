@@ -20,6 +20,7 @@ public class Rock : MonoBehaviour
     Vector3 prevPos;
     TriggerReader input;
     public AudioSource RockFall;
+    private StatsRecorder stats;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class Rock : MonoBehaviour
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         speed = 1f;
         input = GameObject.Find("GetInput").GetComponent<TriggerReader>();
+        stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
     }
     public void initStats(float rockSize)
     {
@@ -68,6 +70,7 @@ public class Rock : MonoBehaviour
             thrown = true;
             rb.useGravity = true;
             rb.velocity = direction * 70f;
+            stats.rockThrown();
         }
     }
     // Update is called once per frame

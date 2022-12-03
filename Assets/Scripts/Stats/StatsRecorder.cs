@@ -8,23 +8,25 @@ public class StatsRecorder : MonoBehaviour
     private int numHit = 0;
     private int score = 0;
     private int highScore = 0;
+    public UIUpdater ui;
 
-    void rockThrown ()
+    public void rockThrown ()
     {
         numThrown++;
     }
 
-    void hit()
+    public void hit()
     {
         numHit++;
     }
 
-    void increaseScore(int points)
+    public void increaseScore(int points)
     {
         score += points;
+        ui.updateText();
     }
 
-    int getScore()
+    public int getScore()
     {
         return score;
     }

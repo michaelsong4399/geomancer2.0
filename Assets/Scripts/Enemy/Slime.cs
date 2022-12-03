@@ -17,6 +17,7 @@ public class Slime : MonoBehaviour
     private ParticleSystem particlePrefab;
     public Animator anim;
     private Color initColor;
+    private StatsRecorder stats;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class Slime : MonoBehaviour
         gameObject.transform.LookAt(player.transform);
         anim.Play("mixamo_com", -1, Random.Range(0, 1f)); //randomizes anim start frame
         initColor = rend.material.color;    
+        stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
     }
     public void initStats(int slimeSize)
     {
@@ -47,17 +49,17 @@ public class Slime : MonoBehaviour
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
             rend.material.color = Color.Lerp(initColor, Color.red, 1 - 0.5f * (float)hp / maxHp);
-            
+            stats.hit();
             // Destroy(collision.gameObject);
             if (hp <= 0)
             {
                 // Instantiate particle 
                 ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
                 newParticle.GetComponent<ParticleSystem>().Play();
+                stats.increaseScore(1);
                 Destroy(gameObject, 0.1f);
             }
         }
-
     }
     // Update is called once per frame
     void Update()
