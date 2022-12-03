@@ -30,4 +30,16 @@ public class StatsRecorder : MonoBehaviour
     {
         return score;
     }
+
+    public float getAccuracy()
+    {
+        if (numThrown > 0)
+        {
+            return (float)numHit/numThrown;
+        }
+        else
+        {
+            return 0f;
+        }
+    }
 }
