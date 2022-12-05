@@ -14,6 +14,7 @@ public class Slime : MonoBehaviour
     private GameObject player;
     public SkinnedMeshRenderer rend;
     public string tagToCollideWith = "Rock";
+    public ParticleSystem fire;
     private ParticleSystem particlePrefab;
     public Animator anim;
     private Color initColor;
@@ -33,6 +34,9 @@ public class Slime : MonoBehaviour
         anim.Play("mixamo_com", -1, Random.Range(0, 1f)); //randomizes anim start frame
         initColor = rend.material.color;    
         stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
+        fire = Instantiate(fire, gameObject.transform.position, Quaternion.identity);
+        fire.transform.Rotate(-90.0f, 0.0f, 0.0f);
+        fire.GetComponent <ParticleSystem>().Stop();
     }
     public void initStats(int slimeSize)
     {
@@ -46,6 +50,7 @@ public class Slime : MonoBehaviour
     {
         if (collision.gameObject.tag == tagToCollideWith && collision.gameObject.GetComponent<Rock>().thrown == true)
         {
+            print("rock"); 
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
             rend.material.color = Color.Lerp(initColor, Color.red, 1 - 0.5f * (float)hp / maxHp);
@@ -60,6 +65,11 @@ public class Slime : MonoBehaviour
                 Destroy(gameObject, 0.1f);
             }
         }
+
+        if (collision.gameObject.tag == "fire")
+        {
+            fire.GetComponent<ParticleSystem>().Play(); 
+        }
     }
     // Update is called once per frame
     void Update()
@@ -68,6 +78,8 @@ public class Slime : MonoBehaviour
         direction = new Vector3(direction.x, 0f, direction.z);
         Vector3.Normalize(direction);
         gameObject.transform.position += direction*speed*Time.deltaTime;
+        fire.transform.position = gameObject.transform.position; 
+
     }
     private void OnDestroy()
     {
