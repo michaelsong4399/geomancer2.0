@@ -104,7 +104,7 @@ public class Slime : MonoBehaviour
                 ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
                 newParticle.GetComponent<ParticleSystem>().Play();
                 stats.increaseScore(pointValue);
-                Destroy(gameObject, 0.1f);
+                Destroy(gameObject);
                 fire.GetComponent<ParticleSystem>().Stop(); 
                 Destroy(fire, 1f); 
             }
