@@ -26,9 +26,9 @@ public class EnemyGen : MonoBehaviour
         z_gold = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Slime_Gold.prefab", typeof(GameObject)) as GameObject;
         ghostPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Slime.prefab", typeof(GameObject)) as GameObject;
         statsManager = GameObject.Find("StatsManager");
-        score = statsManager.GetComponent<StatsRecorder>().getScore() + 500;
+        // score = statsManager.GetComponent<StatsRecorder>().getScore() + 500f;
         // score = 1000;
-        Debug.Log(score);
+        // Debug.Log(score);
         // spawnSlimes(5, 3, 1);
     }
 
@@ -45,7 +45,7 @@ public class EnemyGen : MonoBehaviour
         Debug.Log((zCap,mutation,cap[0]));
         return cap;
     }
-    
+
     void spawnSlimesWithSize(int slimeSize, int num, GameObject obj)
     {
         for (int i = 0; i < num; i++)
@@ -65,6 +65,7 @@ public class EnemyGen : MonoBehaviour
         GameObject[] zsCap = GameObject.FindGameObjectsWithTag("Slime_Silver");
         GameObject[] zgCap = GameObject.FindGameObjectsWithTag("Slime_Gold");
         // GameObject[] ghosts = GameObject.FindGameObjectsWithTag("Rock");
+        score = statsManager.GetComponent<StatsRecorder>().getScore() + 500;
         int[] cap = getSpawnCap(score);
         // Debug.Log(cap[0]);
         if (zbCap.Length < cap[0])
