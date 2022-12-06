@@ -7,6 +7,9 @@ using UnityEditor;
 public class RockGen : MonoBehaviour
 {
     private GameObject rockPrefab;
+    private GameObject fireballPrefab;
+    private GameObject statsManager;
+    private int score;
     public int numRocks = 5;
     public int numFireballs = 5;
     // Start is called before the first frame update
@@ -15,7 +18,7 @@ public class RockGen : MonoBehaviour
         rockPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Rock.prefab", typeof(GameObject)) as GameObject;
         fireballPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Fireball.prefab", typeof(GameObject)) as GameObject;
         // Load rockprefab
-        spawnRocks(numRocks-1);
+        spawnRocks(numRocks-1, rockPrefab);
     }
     void spawnRocks(int num, GameObject obj)
     {
@@ -47,7 +50,7 @@ public class RockGen : MonoBehaviour
         }
         if (score > 2000 && fireballs.Length < numRocks)
         {
-            spawnFireballs(numFireballs - fireballs.Length, fireballPrefab);
+            spawnRocks(numFireballs - fireballs.Length, fireballPrefab);
         }
         
 
