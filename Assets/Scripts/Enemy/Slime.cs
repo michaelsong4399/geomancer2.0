@@ -98,30 +98,20 @@ public class Slime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hp <= 0)
+            {
+                // Instantiate particle 
+                ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
+                newParticle.GetComponent<ParticleSystem>().Play();
+                stats.increaseScore(pointValue);
+                Destroy(gameObject, 0.1f);
+                fire.GetComponent<ParticleSystem>().Stop(); 
+                Destroy(fire, 1f); 
+            }
         if(onFire){
             hp -= 0.2f * Time.deltaTime;
             speed = 0.08f / (float)size * 0.5f;
             rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
-            if (hp <= 0)
-            {
-                // Instantiate particle 
-                ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
-                newParticle.GetComponent<ParticleSystem>().Play();
-                stats.increaseScore(pointValue);
-                Destroy(gameObject, 0.1f);
-                fire.GetComponent<ParticleSystem>().Stop(); 
-                Destroy(fire, 1f); 
-            }
-            if (hp <= 0)
-            {
-                // Instantiate particle 
-                ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
-                newParticle.GetComponent<ParticleSystem>().Play();
-                stats.increaseScore(pointValue);
-                Destroy(gameObject, 0.1f);
-                fire.GetComponent<ParticleSystem>().Stop(); 
-                Destroy(fire, 1f); 
-            }
         }else{
             speed = 0.08f / (float)size;
         }
