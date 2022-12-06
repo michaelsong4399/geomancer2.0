@@ -67,21 +67,18 @@ public class Slime : MonoBehaviour
             // smoothly transition color from green to red based on percent hp
             rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
             stats.hit();
-            // Destroy(collision.gameObject);
-            if (hp <= 0)
-            {
-                // Instantiate particle 
-                ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
-                newParticle.GetComponent<ParticleSystem>().Play();
-                stats.increaseScore(pointValue);
-                Destroy(gameObject, 0.1f);
-                fire.GetComponent<ParticleSystem>().Stop(); 
-                Destroy(fire, 1f); 
-            }
         }
 
-        if (collision.gameObject.tag == "Fireball")
+        if (collision.gameObject.tag == "Fireball" && collision.gameObject.GetComponent<Rock>().thrown == true)
         {
+            if (reachedPlayer)
+            {
+                attackTimer = ATTACK_DELAY;
+            }
+            hp -= 0.5;
+            // smoothly transition color from green to red based on percent hp
+            rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
+            stats.hit();
             fire.GetComponent<ParticleSystem>().Play();
             onFire = true;
         }
