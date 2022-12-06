@@ -20,6 +20,7 @@ public class Slime : MonoBehaviour
     private Color initColor;
     private StatsRecorder stats;
     public int pointValue;
+    public int health;
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +43,9 @@ public class Slime : MonoBehaviour
     public void initStats(int slimeSize)
     {
         size = slimeSize;
-        hp = size;
-        maxHp = size;
-        speed = 0.05f / (float)size;
+        hp = health;
+        maxHp = health;
+        speed = 0.08f / (float)size;
         gameObject.transform.localScale *= 150*size;
     }
     private void OnCollisionEnter(Collision collision)
