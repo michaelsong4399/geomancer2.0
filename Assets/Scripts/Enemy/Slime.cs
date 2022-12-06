@@ -25,8 +25,8 @@ public class Slime : MonoBehaviour
     private bool reachedPlayer;
     private float attackTimer;
     private float ATTACK_DELAY = 1f;
-    private bool onFire;
-    private bool onDestroy;
+    private bool onFire = false;
+    private bool onDestroy = false;
 
     // Start is called before the first frame update
     void Start()
@@ -108,6 +108,7 @@ public class Slime : MonoBehaviour
                 ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
                 newParticle.GetComponent<ParticleSystem>().Play();
                 stats.increaseScore(pointValue);
+                onDestroy = true;
                 Destroy(gameObject,0.1f);
                 fire.GetComponent<ParticleSystem>().Stop(); 
                 Destroy(fire, 5f); 
