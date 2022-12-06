@@ -13,7 +13,8 @@ public class Slime : MonoBehaviour
     private float speed;
     private GameObject player;
     public SkinnedMeshRenderer rend;
-    public string tagToCollideWith = "Rock";
+    public string rockTag = "Rock";
+    private string playerBodyTag = "Player_Body";
     public ParticleSystem fire;
     private ParticleSystem particlePrefab;
     public Animator anim;
@@ -21,6 +22,9 @@ public class Slime : MonoBehaviour
     private StatsRecorder stats;
     public int pointValue;
     public int health;
+    private bool reachedPlayer;
+    private float attackTimer;
+    private float ATTACK_DELAY = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +43,7 @@ public class Slime : MonoBehaviour
         fire = Instantiate(fire, gameObject.transform.position, Quaternion.identity);
         fire.transform.Rotate(-90.0f, 0.0f, 0.0f);
         fire.GetComponent <ParticleSystem>().Stop();
+        reachedPlayer = false;
     }
     public void initStats(int slimeSize)
     {
@@ -50,9 +55,13 @@ public class Slime : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == tagToCollideWith && collision.gameObject.GetComponent<Rock>().thrown == true)
+        if (collision.gameObject.tag == rockTag && collision.gameObject.GetComponent<Rock>().thrown == true)
         {
-            print("rock"); 
+            if (reachedPlayer)
+            {
+                attackTimer = ATTACK_DELAY;
+            }
+            //print("rock"); 
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
             rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
@@ -72,16 +81,40 @@ public class Slime : MonoBehaviour
         {
             fire.GetComponent<ParticleSystem>().Play(); 
         }
+
+        
+    }
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == playerBodyTag)
+        {
+            if (!reachedPlayer)
+            {
+                reachedPlayer = true;
+                attackTimer = ATTACK_DELAY;
+            }
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = player.transform.position - gameObject.transform.position;
-        direction = new Vector3(direction.x, 0f, direction.z);
-        Vector3.Normalize(direction);
-        gameObject.transform.position += direction*speed*Time.deltaTime;
-        fire.transform.position = gameObject.transform.position; 
+        if (!reachedPlayer)
+        {
+            Vector3 direction = player.transform.position - gameObject.transform.position;
+            direction = new Vector3(direction.x, 0f, direction.z);
+            Vector3.Normalize(direction);
+            gameObject.transform.position += direction*speed*Time.deltaTime;
+            fire.transform.position = gameObject.transform.position;
+        }
+        else if (attackTimer > 0f)
+        {
+            attackTimer -= Time.deltaTime;
+            //Debug.Log(attackTimer);
+        }
+        else
+        {
+            Debug.Log("Game Over");
 
+        }
     }
     private void OnDestroy()
     {

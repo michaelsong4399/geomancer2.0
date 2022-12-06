@@ -7,18 +7,27 @@ public class UIUpdater : MonoBehaviour
 {
     TextMeshProUGUI tmp;
     StatsRecorder stats;
-    int highScore = 0;
+    SaveSerial save;
     
     // Start is called before the first frame update
     void Start()
     {
         tmp = gameObject.GetComponent<TextMeshProUGUI>();
+        StartCoroutine(LateStart(0.1f));
+    }
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        init();
+    }
+    void init ()
+    {
         stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
-        this.highScore = GameObject.Find("StatsManager").GetComponent<SaveSerial>().getHighScore();
+        save = GameObject.Find("StatsManager").GetComponent<SaveSerial>();
         updateText();
     }
     public void updateText()
     {
-        tmp.text = "Score: " + stats.getScore() + "\n" + "High Score: " + highScore;
+        tmp.text = "Score: " + stats.getScore() + "\n" + "High Score: " + save.getHighScore();
     }
 }
