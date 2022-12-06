@@ -100,7 +100,7 @@ public class Slime : MonoBehaviour
     void Update()
     {
         if (onDestroy){
-            break;
+            return;
         }
         if (hp <= 0)
             {
