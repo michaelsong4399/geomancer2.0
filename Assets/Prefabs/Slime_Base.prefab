@@ -67,6 +67,7 @@ MonoBehaviour:
   tagToCollideWith: Rock
   fire: {fileID: 8680418190498535603, guid: 09a236a2bda69c4499316c84e658cc2f, type: 3}
   anim: {fileID: 5337285908788393244}
+  pointValue: 100
 --- !u!65 &7543193369347043892
 BoxCollider:
   m_ObjectHideFlags: 0

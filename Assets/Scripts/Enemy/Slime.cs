@@ -19,6 +19,7 @@ public class Slime : MonoBehaviour
     public Animator anim;
     private Color initColor;
     private StatsRecorder stats;
+    public int pointValue;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +62,7 @@ public class Slime : MonoBehaviour
                 // Instantiate particle 
                 ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
                 newParticle.GetComponent<ParticleSystem>().Play();
-                stats.increaseScore(1);
+                stats.increaseScore(pointValue);
                 Destroy(gameObject, 0.1f);
             }
         }
