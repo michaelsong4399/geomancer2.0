@@ -17,6 +17,7 @@ public class RockGen : MonoBehaviour
     {
         rockPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Rock.prefab", typeof(GameObject)) as GameObject;
         fireballPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Fireball.prefab", typeof(GameObject)) as GameObject;
+        statsManager = GameObject.Find("StatsManager");
         // Load rockprefab
         spawnRocks(numRocks-1, rockPrefab);
     }
