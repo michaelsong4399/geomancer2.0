@@ -44,7 +44,7 @@ public class RockGen : MonoBehaviour
         // if less than num, spawn more
         GameObject[] rocks = GameObject.FindGameObjectsWithTag("Rock");
         GameObject[] fireballs = GameObject.FindGameObjectsWithTag("Fireball");
-        score = statsManager.GetComponent<StatsRecorder>().getScore() + 500;
+        score = statsManager.GetComponent<StatsRecorder>().getScore();
         if (rocks.Length < numRocks)
         {
             spawnRocks(numRocks - rocks.Length, rockPrefab);
