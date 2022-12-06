@@ -75,7 +75,7 @@ public class Slime : MonoBehaviour
             {
                 attackTimer = ATTACK_DELAY;
             }
-            hp -= 0.5;
+            hp -= 0.5f;
             // smoothly transition color from green to red based on percent hp
             rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
             stats.hit();
