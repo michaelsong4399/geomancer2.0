@@ -43,7 +43,7 @@ public class EnemyGen : MonoBehaviour
         cap[2] = (int)(zCap * mutation*mutation);
         cap[1] = (int)((zCap-cap[2]) * mutation);
         cap[0] = (int)((zCap-cap[2]-cap[1]));
-        Debug.Log((zCap,mutation,cap[0]));
+        //Debug.Log((zCap,mutation,cap[0]));
         return cap;
     }
 
