@@ -77,7 +77,7 @@ public class Slime : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "fire")
+        if (collision.gameObject.tag == "Fireball")
         {
             fire.GetComponent<ParticleSystem>().Play(); 
         }

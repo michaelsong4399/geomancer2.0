@@ -19,7 +19,7 @@ public class Breakable : MonoBehaviour {
             }
  
             Destroy(gameObject);
-            Destroy(replacement, 5.0f);
+            Destroy(replacement, 2.0f);
             
 
         }
