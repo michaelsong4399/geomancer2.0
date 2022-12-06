@@ -7,15 +7,17 @@ using UnityEditor;
 public class RockGen : MonoBehaviour
 {
     private GameObject rockPrefab;
-    public int numRocks = 10;
+    public int numRocks = 5;
+    public int numFireballs = 5;
     // Start is called before the first frame update
     void Start()
     {
         rockPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Rock.prefab", typeof(GameObject)) as GameObject;
+        fireballPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Fireball.prefab", typeof(GameObject)) as GameObject;
         // Load rockprefab
         spawnRocks(numRocks-1);
     }
-    void spawnRocks(int num)
+    void spawnRocks(int num, GameObject obj)
     {
         for (int i = 0; i < num; i++)
         {
@@ -23,7 +25,8 @@ public class RockGen : MonoBehaviour
             float height = Random.Range(3, 4);
             float radius = Random.Range(2, 4);
             Vector3 pos = this.transform.position + new Vector3(radius * Mathf.Cos(angle), height, radius * Mathf.Sin(angle));
-            GameObject newRock = Instantiate(rockPrefab, pos, Quaternion.identity);
+
+            GameObject newRock = Instantiate(obj, pos, Quaternion.identity);
             // Randomize rock size
             float rockSize = Random.Range(0.8f, 1.2f);
             newRock.GetComponent<Rock>().initStats(rockSize);
@@ -36,10 +39,17 @@ public class RockGen : MonoBehaviour
         // find the amount of rocks in the scene
         // if less than num, spawn more
         GameObject[] rocks = GameObject.FindGameObjectsWithTag("Rock");
+        GameObject[] fireballs = GameObject.FindGameObjectsWithTag("Fireball");
+        score = statsManager.GetComponent<StatsRecorder>().getScore() + 500;
         if (rocks.Length < numRocks)
         {
-            spawnRocks(numRocks - rocks.Length);
+            spawnRocks(numRocks - rocks.Length, rockPrefab);
         }
+        if (score > 2000 && fireballs.Length < numRocks)
+        {
+            spawnFireballs(numFireballs - fireballs.Length, fireballPrefab);
+        }
+        
 
         
     }

@@ -7,10 +7,10 @@ TagManager:
   - Rock
   - Particle_SlimeDestroy
   - Slime
-  - fire
   - Slime_Base
   - Slime_Silver
   - Slime_Gold
+  - Fireball
   layers:
   - Default
   - TransparentFX
