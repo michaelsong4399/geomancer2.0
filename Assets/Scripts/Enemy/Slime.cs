@@ -116,7 +116,7 @@ public class Slime : MonoBehaviour
         if(onFire){
             hp -= 0.5f * Time.deltaTime;
             speed = 0.08f / (float)size * 0.5f;
-            rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
+            rend.material.color = Color.Lerp(initColor, Color.red, 1f - 0.5f * (float)hp / maxHp);
         }else{
             speed = 0.08f / (float)size;
         }
