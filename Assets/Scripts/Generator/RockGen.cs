@@ -8,15 +8,18 @@ public class RockGen : MonoBehaviour
 {
     private GameObject rockPrefab;
     private GameObject fireballPrefab;
+    private GameObject bombPrefab;
     private GameObject statsManager;
     private int score;
     public int numRocks = 5;
     public int numFireballs = 5;
+    public int numBombs = 5;
     // Start is called before the first frame update
     void Start()
     {
         rockPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Rock.prefab", typeof(GameObject)) as GameObject;
         fireballPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Fireball.prefab", typeof(GameObject)) as GameObject;
+        bombPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Bomb.prefab", typeof(GameObject)) as GameObject;
         statsManager = GameObject.Find("StatsManager");
         // Load rockprefab
         spawnRocks(numRocks-1, rockPrefab);
@@ -44,6 +47,7 @@ public class RockGen : MonoBehaviour
         // if less than num, spawn more
         GameObject[] rocks = GameObject.FindGameObjectsWithTag("Rock");
         GameObject[] fireballs = GameObject.FindGameObjectsWithTag("Fireball");
+        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
         score = statsManager.GetComponent<StatsRecorder>().getScore();
         if (rocks.Length < numRocks)
         {
@@ -53,6 +57,11 @@ public class RockGen : MonoBehaviour
         {
             spawnRocks(numFireballs - fireballs.Length, fireballPrefab);
         }
+        if (score > 5000 && rocks.Length < numRocks)
+        {
+            spawnRocks(numBombs - bombs.Length, bombPrefab);
+        }
+
         
 
         

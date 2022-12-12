@@ -11,6 +11,7 @@ TagManager:
   - Slime_Silver
   - Slime_Gold
   - Fireball
+  - Bomb
   layers:
   - Default
   - TransparentFX
