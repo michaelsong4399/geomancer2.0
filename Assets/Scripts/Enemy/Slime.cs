@@ -70,9 +70,6 @@ public class Slime : MonoBehaviour
             //print("rock"); 
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
-            rend.material.color = Color.red;
-            // Wait for 0.1 seconds
-            StartCoroutine(WaitForSeconds(0.1f));
             rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
             stats.hit();
         }
@@ -121,16 +118,6 @@ public class Slime : MonoBehaviour
                 Destroy(fire, 5f); 
             }
 
-        // If other slimes close by on fire, catch on fire
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 5f);
-        foreach (Collider col in hitColliders)
-        {
-            if (col.gameObject.tag == "Slime" && col.gameObject.GetComponent<Slime>().onFire)
-            {
-                onFire = true;
-                fire.GetComponent<ParticleSystem>().Play();
-            }
-        }
 
         if(onFire){
             hp -= 0.5f * Time.deltaTime;
