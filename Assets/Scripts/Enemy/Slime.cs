@@ -40,10 +40,12 @@ public class Slime : MonoBehaviour
         //rend = gameObject.GetComponentInChildren<MeshRenderer>();
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
-        audio.Play("ZombieLive", this.gameObject.transform.position);
+        //audio.Play("ZombieLive", this.gameObject.transform.position);
         anim.Play("zwalk", -1, Random.Range(0, 1f)); //randomizes anim start frame
         initColor = rend.material.color;    
         stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
+        if (stats == null)
+            Debug.Log("AAAA");
         fire = Instantiate(fire, gameObject.transform.position, Quaternion.identity);
         fire.transform.Rotate(-90.0f, 0.0f, 0.0f);
         fire.GetComponent <ParticleSystem>().Stop();
