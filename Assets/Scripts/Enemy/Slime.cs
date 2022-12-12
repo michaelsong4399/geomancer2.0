@@ -25,7 +25,7 @@ public class Slime : MonoBehaviour
     private bool reachedPlayer;
     private float attackTimer;
     private float ATTACK_DELAY = 2.633f;
-    private bool onFire = false;
+    public bool onFire = false;
     private bool onDestroy = false;
     private bool attacked = false;
 
@@ -70,6 +70,9 @@ public class Slime : MonoBehaviour
             //print("rock"); 
             hp -= 1;
             // smoothly transition color from green to red based on percent hp
+            rend.material.color = Color.red;
+            // Wait for 0.1 seconds
+            StartCoroutine(WaitForSeconds(0.1f));
             rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
             stats.hit();
         }
@@ -117,6 +120,18 @@ public class Slime : MonoBehaviour
                 fire.GetComponent<ParticleSystem>().Stop(); 
                 Destroy(fire, 5f); 
             }
+
+        // If other slimes close by on fire, catch on fire
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 5f);
+        foreach (Collider col in hitColliders)
+        {
+            if (col.gameObject.tag == "Slime" && col.gameObject.GetComponent<Slime>().onFire)
+            {
+                onFire = true;
+                fire.GetComponent<ParticleSystem>().Play();
+            }
+        }
+
         if(onFire){
             hp -= 0.5f * Time.deltaTime;
             speed = 0.08f / (float)size * 0.5f;
@@ -124,6 +139,9 @@ public class Slime : MonoBehaviour
         }else{
             speed = 0.08f / (float)size;
         }
+
+
+
         if (!reachedPlayer)
         {
             Vector3 direction = player.transform.position - gameObject.transform.position;
