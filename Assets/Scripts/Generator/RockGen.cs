@@ -53,11 +53,11 @@ public class RockGen : MonoBehaviour
         {
             spawnRocks(numRocks - rocks.Length, rockPrefab);
         }
-        if (score > 1000 && fireballs.Length < numRocks)
+        if (score > 500 && fireballs.Length < numRocks)
         {
             spawnRocks(numFireballs - fireballs.Length, fireballPrefab);
         }
-        if (score > 5000 && rocks.Length < numRocks)
+        if (score > 1000 && rocks.Length < numRocks)
         {
             spawnRocks(numBombs - bombs.Length, bombPrefab);
         }

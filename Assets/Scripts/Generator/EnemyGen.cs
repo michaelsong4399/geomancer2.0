@@ -35,10 +35,10 @@ public class EnemyGen : MonoBehaviour
     int[] getSpawnCap(int s){
         // [zombie, silver zombie, gold zombie, ghost, silver ghost, gold ghost]
         // Point values: [100, 200, 500, 200 400 1000]
-        int maxzCap = 20;
+        int maxzCap = 15;
         int zCap = Mathf.Min(maxzCap,s/200);
         // int gCap = s/200;
-        float mutation = Mathf.Min(1f,s/10000f);
+        float mutation = Mathf.Min(1f,s/5000f);
         int[] cap = new int[6];
         cap[2] = (int)(zCap * mutation*mutation);
         cap[1] = (int)((zCap-cap[2]) * mutation);
