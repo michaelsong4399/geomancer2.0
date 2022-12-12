@@ -24,9 +24,10 @@ public class Slime : MonoBehaviour
     public int health;
     private bool reachedPlayer;
     private float attackTimer;
-    private float ATTACK_DELAY = 1f;
+    private float ATTACK_DELAY = 2.633f;
     private bool onFire = false;
     private bool onDestroy = false;
+    private bool attacked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +40,8 @@ public class Slime : MonoBehaviour
         //rend = gameObject.GetComponentInChildren<MeshRenderer>();
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
-        anim.Play("mixamo_com", -1, Random.Range(0, 1f)); //randomizes anim start frame
+        audio.Play("ZombieLive", this.gameObject.transform.position);
+        anim.Play("zwalk", -1, Random.Range(0, 1f)); //randomizes anim start frame
         initColor = rend.material.color;    
         stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
         fire = Instantiate(fire, gameObject.transform.position, Quaternion.identity);
@@ -86,16 +88,16 @@ public class Slime : MonoBehaviour
 
         
     }
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == playerBodyTag)
-        {
-            if (!reachedPlayer)
-            {
-                reachedPlayer = true;
-                attackTimer = ATTACK_DELAY;
-            }
-        }
-    }
+    // private void OnTriggerEnter(Collider other) {
+    //     if (other.gameObject.tag == playerBodyTag)
+    //     {
+    //         if (!reachedPlayer)
+    //         {
+    //             reachedPlayer = true;
+    //             attackTimer = ATTACK_DELAY;
+    //         }
+    //     }
+    // }
     // Update is called once per frame
     void Update()
     {
@@ -127,16 +129,31 @@ public class Slime : MonoBehaviour
             Vector3.Normalize(direction);
             gameObject.transform.position += direction*speed*Time.deltaTime;
             fire.transform.position = gameObject.transform.position;
+
+            // Check if within range of player
+            if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 10f)
+            {
+                reachedPlayer = true;
+                // Play attack animation
+                anim.Play("zattack", -1, 0f);
+                attackTimer = ATTACK_DELAY;
+            }
         }
         else if (attackTimer > 0f)
         {
             attackTimer -= Time.deltaTime;
-            //Debug.Log(attackTimer);
+            if (!attacked && attackTimer < 1.5f){
+                attacked = true;
+                // audio.Play("ZombieLive", this.gameObject.transform.position);
+                audio.Play("SlimeDestroy", this.gameObject.transform.position);
+                Debug.Log(attacked);
+            }
         }
         else
         {
-            Debug.Log("Game Over");
-
+            anim.Play("zattack", -1, 0f);
+            attackTimer = ATTACK_DELAY;
+            attacked = false;
         }
     }
     private void OnDestroy()
