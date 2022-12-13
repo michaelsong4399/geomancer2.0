@@ -13,6 +13,7 @@ TagManager:
   - Fireball
   - Bomb
   - Explosion
+  - Bat_Base
   layers:
   - Default
   - TransparentFX

@@ -18,6 +18,7 @@ public class Slime : MonoBehaviour
     public ParticleSystem fire;
     private ParticleSystem particlePrefab;
     public Animator anim;
+    // public Animator banim;
     private Color initColor;
     private StatsRecorder stats;
     public int pointValue;
@@ -30,6 +31,7 @@ public class Slime : MonoBehaviour
     private bool attacked = false;
     private float FIRE_SPEED_MULTIPLIER = 0.5f;
     private float baseSpeed = 0.05f;
+    private bool fly = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,15 @@ public class Slime : MonoBehaviour
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
         //audio.Play("ZombieLive", this.gameObject.transform.position);
-        anim.Play("zwalk", -1, Random.Range(0, 1f)); //randomizes anim start frame
+        if(fly){
+            // banim = gameObject.GetComponentInChildren<Animator>();
+            anim.Play("bfly", -1, Random.Range(0, 1f)); //randomizes anim start frame
+        }
+        else{
+            // anim = gameObject.GetComponentInChildren<Animator>();
+            anim.Play("zwalk", -1, Random.Range(0, 1f)); //randomizes anim start frame
+        }
+        // anim.Play("zwalk", -1, Random.Range(0, 1f)); //randomizes anim start frame
         initColor = rend.material.color;    
         stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
         if (stats == null)
