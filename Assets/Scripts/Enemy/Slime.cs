@@ -25,7 +25,7 @@ public class Slime : MonoBehaviour
     private bool reachedPlayer;
     private float attackTimer;
     private float ATTACK_DELAY = 2.633f;
-    private bool onFire = false;
+    public bool onFire = false;
     private bool onDestroy = false;
     private bool attacked = false;
 
@@ -40,10 +40,12 @@ public class Slime : MonoBehaviour
         //rend = gameObject.GetComponentInChildren<MeshRenderer>();
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         gameObject.transform.LookAt(player.transform);
-        audio.Play("ZombieLive", this.gameObject.transform.position);
+        //audio.Play("ZombieLive", this.gameObject.transform.position);
         anim.Play("zwalk", -1, Random.Range(0, 1f)); //randomizes anim start frame
         initColor = rend.material.color;    
         stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
+        if (stats == null)
+            Debug.Log("AAAA");
         fire = Instantiate(fire, gameObject.transform.position, Quaternion.identity);
         fire.transform.Rotate(-90.0f, 0.0f, 0.0f);
         fire.GetComponent <ParticleSystem>().Stop();
@@ -115,6 +117,8 @@ public class Slime : MonoBehaviour
                 fire.GetComponent<ParticleSystem>().Stop(); 
                 Destroy(fire, 5f); 
             }
+
+
         if(onFire){
             hp -= 0.5f * Time.deltaTime;
             speed = 0.08f / (float)size * 0.5f;
@@ -122,6 +126,9 @@ public class Slime : MonoBehaviour
         }else{
             speed = 0.08f / (float)size;
         }
+
+
+
         if (!reachedPlayer)
         {
             Vector3 direction = player.transform.position - gameObject.transform.position;

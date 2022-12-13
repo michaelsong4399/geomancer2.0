@@ -4877,7 +4877,7 @@ GameObject:
   - component: {fileID: -1666803814007857056}
   - component: {fileID: 7322639612877918447}
   - component: {fileID: 4260554430473888163}
-  - component: {fileID: 5921951682068833764}
+  - component: {fileID: 2262624614036202047}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -5010,8 +5010,8 @@ MonoBehaviour:
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5921951682068833764}
-        m_TargetAssemblyTypeName: Rock, Assembly-CSharp
+      - m_Target: {fileID: 2262624614036202047}
+        m_TargetAssemblyTypeName: Bomb, Assembly-CSharp
         m_MethodName: select
         m_Mode: 1
         m_Arguments:
@@ -5025,8 +5025,8 @@ MonoBehaviour:
   m_HoverExited:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5921951682068833764}
-        m_TargetAssemblyTypeName: Rock, Assembly-CSharp
+      - m_Target: {fileID: 2262624614036202047}
+        m_TargetAssemblyTypeName: Bomb, Assembly-CSharp
         m_MethodName: deselect
         m_Mode: 1
         m_Arguments:
@@ -5046,8 +5046,8 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5921951682068833764}
-        m_TargetAssemblyTypeName: Rock, Assembly-CSharp
+      - m_Target: {fileID: 2262624614036202047}
+        m_TargetAssemblyTypeName: Bomb, Assembly-CSharp
         m_MethodName: activate
         m_Mode: 1
         m_Arguments:
@@ -5108,9 +5108,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replacement: {fileID: 4025919737830003387, guid: cfb60d3b94b8c4abe824ce231fa012c7, type: 3}
   _breakForce: 10
-  _collisionMultiplier: 10
+  _collisionMultiplier: 100
   _broken: 0
---- !u!114 &5921951682068833764
+--- !u!114 &2262624614036202047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5119,7 +5119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7592598655272129718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e1fff468dd44bb79caac51b41d7bcd, type: 3}
+  m_Script: {fileID: 11500000, guid: e378a527baf544b58857db0bbb0686a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
