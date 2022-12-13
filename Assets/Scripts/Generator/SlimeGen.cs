@@ -33,7 +33,6 @@ public class SlimeGen : MonoBehaviour
             float radius = Random.Range(minSpawnRadius, maxSpawnRadius);
             Vector3 pos = new Vector3(radius * Mathf.Cos(angle), 0.5f, radius * Mathf.Sin(angle));
             GameObject newSlime = Instantiate(slimePrefab, pos, Quaternion.identity);
-            newSlime.GetComponent<Slime>().initStats(slimeSize);
         }
     }
     // Update is called once per frame

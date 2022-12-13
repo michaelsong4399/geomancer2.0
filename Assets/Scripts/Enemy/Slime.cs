@@ -7,7 +7,7 @@ using UnityEditor;
 public class Slime : MonoBehaviour
 {
     private AudioManager audio;
-    public int size = 0;
+    //public int size = 0;
     private float hp;
     private float maxHp;
     private float speed;
@@ -28,10 +28,13 @@ public class Slime : MonoBehaviour
     public bool onFire = false;
     private bool onDestroy = false;
     private bool attacked = false;
+    private float FIRE_SPEED_MULTIPLIER = 0.5f;
+    private float baseSpeed = 0.05f;
 
     // Start is called before the first frame update
     void Start()
     { 
+        initStats();
         particlePrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Particle_SlimeDestroy.prefab", typeof(ParticleSystem)) as ParticleSystem;
         player = GameObject.Find("XR Origin").transform.
         Find("Camera Offset").transform.
@@ -51,13 +54,13 @@ public class Slime : MonoBehaviour
         fire.GetComponent <ParticleSystem>().Stop();
         reachedPlayer = false;
     }
-    public void initStats(int slimeSize)
+    public void initStats()
     {
-        size = slimeSize;
+        //size = slimeSize;
         hp = health;
         maxHp = health;
-        speed = 0.08f / (float)size;
-        gameObject.transform.localScale *= 150*size;
+        speed = baseSpeed;
+        gameObject.transform.localScale *= 150f;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -121,9 +124,9 @@ public class Slime : MonoBehaviour
 
         if(onFire){
             applyDamage(0.5f * Time.deltaTime);
-            speed = 0.08f / (float)size * 0.5f;
+            speed = baseSpeed*FIRE_SPEED_MULTIPLIER;
         }else{
-            speed = 0.08f / (float)size;
+            speed = baseSpeed;
         }
 
 
