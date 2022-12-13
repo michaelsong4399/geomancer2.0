@@ -68,9 +68,9 @@ public class Slime : MonoBehaviour
                 attackTimer = ATTACK_DELAY;
             }
             //print("rock"); 
-            hp -= 1;
+            applyDamage(1f);
             // smoothly transition color from green to red based on percent hp
-            rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
+            //rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
             stats.hit();
         }
 
@@ -80,9 +80,9 @@ public class Slime : MonoBehaviour
             {
                 attackTimer = ATTACK_DELAY;
             }
-            hp -= 0.5f;
+            applyDamage(0.5f);
             // smoothly transition color from green to red based on percent hp
-            rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
+            //rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
             stats.hit();
             fire.GetComponent<ParticleSystem>().Play();
             onFire = true;
@@ -120,9 +120,8 @@ public class Slime : MonoBehaviour
 
 
         if(onFire){
-            hp -= 0.5f * Time.deltaTime;
+            applyDamage(0.5f * Time.deltaTime);
             speed = 0.08f / (float)size * 0.5f;
-            rend.material.color = Color.Lerp(initColor, Color.red, 1f - 0.5f * (float)hp / maxHp);
         }else{
             speed = 0.08f / (float)size;
         }
@@ -161,6 +160,22 @@ public class Slime : MonoBehaviour
             anim.Play("zattack", -1, 0f);
             attackTimer = ATTACK_DELAY;
             attacked = false;
+        }
+    }
+    public void applyDamage (float damage)
+    {
+        hp -= damage;
+        rend.material.color = Color.Lerp(initColor, Color.red, 1f - 0.5f * (float)hp / maxHp);
+        if (hp <= 0)
+        {
+            // Instantiate particle 
+            ParticleSystem newParticle = Instantiate(particlePrefab, gameObject.transform.position, Quaternion.identity);
+            newParticle.GetComponent<ParticleSystem>().Play();
+            stats.increaseScore(pointValue);
+            onDestroy = true;
+            Destroy(gameObject, 0.1f);
+            fire.GetComponent<ParticleSystem>().Stop();
+            Destroy(fire, 5f);
         }
     }
     private void OnDestroy()

@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using System.IO;
+using UnityEditor;
 
 public class Bomb : MonoBehaviour
 {
     public GameObject target;
+    //private ParticleSystem explosionParticle;
     private AudioManager audio;
     private bool selected = false;
     public static GameObject activated = null;
     private bool justActivated = false;
     public bool thrown = false;
+    public int explosionRadius;
     //private bool released = false;
     public Rigidbody rb;
     Vector3 direction;
@@ -33,6 +37,7 @@ public class Bomb : MonoBehaviour
         speed = 1f;
         input = GameObject.Find("GetInput").GetComponent<TriggerReader>();
         stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
+        //explosionParticle = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Particle_Explosion.prefab", typeof(ParticleSystem)) as ParticleSystem;
     }
     public void initStats(float rockSize)
     {
@@ -129,5 +134,16 @@ public class Bomb : MonoBehaviour
     private void OnDestroy()
     {
         audio.Play("RockDestroy", this.gameObject.transform.position);
+        //explosion.Play();
+        //play particle
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, explosionRadius, Physics.AllLayers);
+        foreach (var hitCollider in hitColliders)
+        {
+            //Debug.Log(hitCollider.gameObject.name);
+            if (hitCollider.gameObject.tag == "Slime_Base" || hitCollider.gameObject.tag == "Slime_Silver" || hitCollider.gameObject.tag == "Slime_Gold")
+            {
+                hitCollider.gameObject.GetComponent<Slime>().applyDamage(1f + 9f*(explosionRadius - Vector3.Distance(gameObject.transform.position, hitCollider.gameObject.transform.position)));
+            }
+        }
     }
 }

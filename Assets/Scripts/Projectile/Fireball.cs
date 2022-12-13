@@ -20,6 +20,7 @@ public class Fireball : MonoBehaviour
     Vector3 prevPos;
     TriggerReader input;
     public AudioSource RockFall;
+    private StatsRecorder stats;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class Fireball : MonoBehaviour
         audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         speed = 1f;
         input = GameObject.Find("GetInput").GetComponent<TriggerReader>();
+        stats = GameObject.Find("StatsManager").GetComponent<StatsRecorder>();
     }
     public void initStats(float rockSize)
     {
@@ -68,6 +70,7 @@ public class Fireball : MonoBehaviour
             thrown = true;
             rb.useGravity = true;
             rb.velocity = direction * 70f;
+            stats.rockThrown();
         }
     }
     // Update is called once per frame
@@ -87,7 +90,7 @@ public class Fireball : MonoBehaviour
         {
             //use derivative of logistic function for speed such that it speeds up and then slows down
             float dist = Vector3.Distance(gameObject.transform.position, target.transform.position);
-            speed = 20*Mathf.Exp(2/initDist*dist - initDist/2) / Mathf.Pow((1 + Mathf.Exp(2/initDist*dist - initDist/2)), 2) + 10f;
+            speed = 20 * Mathf.Exp(2 / initDist * dist - initDist / 2) / Mathf.Pow((1 + Mathf.Exp(2 / initDist * dist - initDist / 2)), 2) + 10f;
 
             direction = target.transform.position - gameObject.transform.position;
             Vector3.Normalize(direction);
