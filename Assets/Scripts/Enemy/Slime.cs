@@ -31,7 +31,7 @@ public class Slime : MonoBehaviour
     private bool attacked = false;
     private float FIRE_SPEED_MULTIPLIER = 0.5f;
     private float baseSpeed = 0.05f;
-    private bool fly = false;
+    public bool fly = false;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +80,7 @@ public class Slime : MonoBehaviour
             {
                 attackTimer = ATTACK_DELAY;
             }
+            reachedPlayer = false;
             //print("rock"); 
             applyDamage(1f);
             // smoothly transition color from green to red based on percent hp
@@ -93,6 +94,7 @@ public class Slime : MonoBehaviour
             {
                 attackTimer = ATTACK_DELAY;
             }
+            reachedPlayer = false;
             applyDamage(0.5f);
             // smoothly transition color from green to red based on percent hp
             //rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
