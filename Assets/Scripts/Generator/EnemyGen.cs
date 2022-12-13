@@ -79,7 +79,7 @@ public class EnemyGen : MonoBehaviour
             float radius = Random.Range(minSpawnRadius, maxSpawnRadius);
             Vector3 pos = new Vector3(radius * Mathf.Cos(angle), 10f, radius * Mathf.Sin(angle));
             GameObject newBat = Instantiate(obj, pos, Quaternion.identity);
-            newBat.GetComponent<Slime>().initStats(batSize,true);
+            //newBat.GetComponent<Slime>().initStats(batSize,true);
         }
     }
     // Update is called once per frame
@@ -97,6 +97,7 @@ public class EnemyGen : MonoBehaviour
             GameObject[] zbCap = GameObject.FindGameObjectsWithTag("Slime_Base");
             GameObject[] zsCap = GameObject.FindGameObjectsWithTag("Slime_Silver");
             GameObject[] zgCap = GameObject.FindGameObjectsWithTag("Slime_Gold");
+            GameObject[] bbCap = GameObject.FindGameObjectsWithTag("Bat_Base");
             // GameObject[] ghosts = GameObject.FindGameObjectsWithTag("Rock");
             score = statsManager.GetComponent<StatsRecorder>().getScore() + 500;
             int[] cap = getSpawnCap(score);
@@ -113,10 +114,10 @@ public class EnemyGen : MonoBehaviour
             {
                 spawnSlimesWithSize(1, cap[2] - zgCap.Length, z_gold);
             }
-        }
-        if (bbCap.Length < cap[3])
-        {
-            spawnBatsWithSize(1, cap[3] - bbCap.Length, b_base);
+            if (bbCap.Length < cap[3])
+            {
+                spawnBatsWithSize(1, cap[3] - bbCap.Length, b_base);
+            }
         }
     }
 }
