@@ -77,7 +77,9 @@ public class EnemyGen : MonoBehaviour
             // instantiate on unit circle with random radius
             float angle = Random.Range(0, 2 * Mathf.PI);
             float radius = Random.Range(minSpawnRadius, maxSpawnRadius);
-            Vector3 pos = new Vector3(radius * Mathf.Cos(angle), 10f, radius * Mathf.Sin(angle));
+            // Generate at random height between 5 and 10
+            float height = Random.Range(6f, 10f);
+            Vector3 pos = new Vector3(radius * Mathf.Cos(angle), height, radius * Mathf.Sin(angle));
             GameObject newBat = Instantiate(obj, pos, Quaternion.identity);
             //newBat.GetComponent<Slime>().initStats(batSize,true);
         }

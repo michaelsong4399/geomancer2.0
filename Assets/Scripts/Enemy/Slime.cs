@@ -152,7 +152,7 @@ public class Slime : MonoBehaviour
             fire.transform.position = gameObject.transform.position;
 
             // Check if within range of player
-            if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 10f)
+            if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 5f)
             {
                 reachedPlayer = true;
                 // Play attack animation

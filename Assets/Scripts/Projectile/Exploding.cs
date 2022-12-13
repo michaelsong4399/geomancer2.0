@@ -8,7 +8,7 @@ public class Exploding : MonoBehaviour
     public float explosionRadius;
 
     void Start()
-    {
+    { 
         //need to add code to get target object so it does not need to be set in Inspector
         explosionParticle = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Particle_Explosion.prefab", typeof(ParticleSystem)) as ParticleSystem;
     }
