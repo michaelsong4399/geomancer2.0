@@ -27,7 +27,11 @@ public class Exploding : MonoBehaviour
                 //Debug.Log(hitCollider.gameObject.name);
                 if (hitCollider.gameObject.tag == "Slime_Base" || hitCollider.gameObject.tag == "Slime_Silver" || hitCollider.gameObject.tag == "Slime_Gold")
                 {
-                    hitCollider.gameObject.GetComponent<Slime>().applyDamage(1f + 9f*(explosionRadius - Vector3.Distance(gameObject.transform.position, hitCollider.gameObject.transform.position)));
+                    // hitCollider.gameObject.GetComponent<Slime>().applyDamage(1f + 9f*(explosionRadius - Vector3.Distance(gameObject.transform.position, hitCollider.gameObject.transform.position)));
+                    // Apply damage but disregard y
+                    Vector3 pos = hitCollider.gameObject.transform.position;
+                    pos.y = gameObject.transform.position.y;
+                    hitCollider.gameObject.GetComponent<Slime>().applyDamage(1f + 9f*(explosionRadius - Vector3.Distance(gameObject.transform.position, pos)));
                 }
             }
             //Destroy(replacement, 2.0f);
