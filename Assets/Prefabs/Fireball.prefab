@@ -4850,7 +4850,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7592598655272129718}
-  m_Mesh: {fileID: -2837682660325928517, guid: a0abf4caf0d507d4e92f6d7cbd62e590, type: 3}
+  m_Mesh: {fileID: -2837682660325928517, guid: 766d4140836ebbb4895f2d11bb67f501, type: 3}
 --- !u!23 &8241209429135275363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5134,6 +5134,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 766d4140836ebbb4895f2d11bb67f501, type: 3}
       propertyPath: m_Name
       value: Fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 766d4140836ebbb4895f2d11bb67f501, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 766d4140836ebbb4895f2d11bb67f501, type: 3}

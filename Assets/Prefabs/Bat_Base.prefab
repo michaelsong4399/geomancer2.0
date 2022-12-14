@@ -49,7 +49,7 @@ MonoBehaviour:
   rend: {fileID: 6868478091458262730}
   rockTag: Rock
   fire: {fileID: 8680418190498535603, guid: 09a236a2bda69c4499316c84e658cc2f, type: 3}
-  anim: {fileID: 5866666021909216657, guid: 0b0794d9a0d5c422cbdcb2c573a5abd7, type: 3}
+  anim: {fileID: 9185622204442240898}
   pointValue: 300
   health: 1
   onFire: 0
@@ -147,6 +147,11 @@ PrefabInstance:
 --- !u!4 &2997654002017353208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ec1ef7eea6084ddeae86bd45ffe108e, type: 3}
+  m_PrefabInstance: {fileID: 3320128277069748755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9185622204442240898 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1ec1ef7eea6084ddeae86bd45ffe108e, type: 3}
   m_PrefabInstance: {fileID: 3320128277069748755}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &6868478091458262730 stripped

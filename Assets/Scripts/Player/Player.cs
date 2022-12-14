@@ -8,12 +8,13 @@ using UnityEditor;
 
 public class Player : MonoBehaviour
 {
-    private float health = 100f;
+    public float maxHealth;
+    private float health;
 
     // Start is called before the first frame update
     void Start()
     { 
-
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damage)
+    public void takeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)

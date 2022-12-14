@@ -141,8 +141,6 @@ public class Slime : MonoBehaviour
             speed = baseSpeed;
         }
 
-
-
         if (!reachedPlayer)
         {
             Vector3 direction = player.transform.position - gameObject.transform.position;
@@ -158,6 +156,7 @@ public class Slime : MonoBehaviour
                 // Play attack animation
                 anim.Play("zattack", -1, 0f);
                 attackTimer = ATTACK_DELAY;
+                StartCoroutine(dealDamage(0.1f));
             }
         }
         else if (attackTimer > 0f)
@@ -192,6 +191,11 @@ public class Slime : MonoBehaviour
             fire.GetComponent<ParticleSystem>().Stop();
             Destroy(fire, 5f);
         }
+    }
+    IEnumerator dealDamage(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        player.GetComponent<Player>().takeDamage(10f);
     }
     private void OnDestroy()
     {
