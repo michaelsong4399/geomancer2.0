@@ -188,7 +188,7 @@ public class Slime : MonoBehaviour
     public void applyDamage (float damage)
     {
         hp -= damage;
-        rend.material.color = Color.Lerp(initColor, Color.red, (float)hp / maxHp);
+        rend.material.color = Color.Lerp(Color.red,initColor, (float)hp / maxHp);
         if (hp <= 0)
         {
             // Instantiate particle 
