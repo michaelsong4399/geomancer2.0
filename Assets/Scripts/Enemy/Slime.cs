@@ -143,15 +143,11 @@ public class Slime : MonoBehaviour
 
         if (!reachedPlayer)
         {
-            Vector3 direction;
+            Vector3 direction = player.transform.position - gameObject.transform.position;
             // if flying, move vertically as well
-            if(fly){
-                direction = player.transform.position - gameObject.transform.position;
-            }
-            else{
+            if(!fly){
                 direction = new Vector3(direction.x, 0f, direction.z);
             }
-            // direction = new Vector3(direction.x, 0f, direction.z);
             Vector3.Normalize(direction);
             gameObject.transform.position += direction*speed*Time.deltaTime;
             fire.transform.position = gameObject.transform.position;
