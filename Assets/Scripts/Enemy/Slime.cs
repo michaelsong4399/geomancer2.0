@@ -166,7 +166,7 @@ public class Slime : MonoBehaviour
                 // Play attack animation
                 // if flying, play different animation
                 if(fly){
-                    banim.Play("battack", -1, 0f);
+                    anim.Play("battack", -1, 0f);
                 }
                 else{
                     anim.Play("zattack", -1, 0f);
