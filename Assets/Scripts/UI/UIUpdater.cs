@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIUpdater : MonoBehaviour
 {
     TextMeshProUGUI tmp;
+    Image screenOverlay;
     StatsRecorder stats;
     SaveSerial save;
     
@@ -29,5 +31,9 @@ public class UIUpdater : MonoBehaviour
     public void updateText()
     {
         tmp.text = "Score: " + stats.getScore() + "\n" + "High Score: " + save.getHighScore();
+    }
+    public void updateOverlay(Color32 c)
+    {
+        screenOverlay.color = c;
     }
 }
