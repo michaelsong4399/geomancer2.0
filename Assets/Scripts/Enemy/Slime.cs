@@ -164,7 +164,14 @@ public class Slime : MonoBehaviour
             {
                 reachedPlayer = true;
                 // Play attack animation
-                anim.Play("zattack", -1, 0f);
+                // if flying, play different animation
+                if(fly){
+                    banim.Play("battack", -1, 0f);
+                }
+                else{
+                    anim.Play("zattack", -1, 0f);
+                }
+                // anim.Play("zattack", -1, 0f);
                 // audio.Play("ZombieHit", this.gameObject.transform.position);
                 attackTimer = ATTACK_DELAY;
             }
