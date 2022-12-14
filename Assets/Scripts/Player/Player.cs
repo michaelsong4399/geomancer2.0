@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     void Start()
     { 
         health = maxHealth;
-        blood = new Color32 (152,0,0,255);
+        blood = new Color32 (90,0,0,255);
     }
 
     // Update is called once per frame
