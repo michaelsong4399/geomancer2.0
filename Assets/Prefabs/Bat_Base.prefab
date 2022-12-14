@@ -53,6 +53,7 @@ MonoBehaviour:
   pointValue: 300
   health: 1
   onFire: 0
+  baseSpeed: 0.09
   fly: 1
 --- !u!65 &8224612066078179333
 BoxCollider:

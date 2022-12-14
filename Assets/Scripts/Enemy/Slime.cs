@@ -29,7 +29,7 @@ public class Slime : MonoBehaviour
     private bool onDestroy = false;
     private bool attacked = false;
     private float FIRE_SPEED_MULTIPLIER = 0.5f;
-    private float baseSpeed = 0.05f;
+    public float baseSpeed = 0.05f;
     public bool fly = false;
     private bool playedSound = false;
 
