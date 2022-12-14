@@ -47,7 +47,7 @@ public class EnemyGen : MonoBehaviour
         int zCap = Mathf.Min(maxzCap,s/200);
         int bCap = Mathf.Min(maxbCap,s/500);
         // int gCap = s/200;
-        float mutation = Mathf.Min(1f,s/5000f);
+        float mutation = Mathf.Min(1f,s/2000f);
         int[] cap = new int[6];
         cap[2] = (int)(zCap * mutation*mutation);
         cap[1] = (int)((zCap-cap[2]) * mutation);
