@@ -49,7 +49,6 @@ public class Slime : MonoBehaviour
         if(fly){
             // banim = gameObject.GetComponentInChildren<Animator>();
             anim.Play("bfly", -1, Random.Range(0, 1f)); //randomizes anim start frame
-            anim.SetBool("Attack",false);
         }
         else{
             // anim = gameObject.GetComponentInChildren<Animator>();
@@ -189,7 +188,12 @@ public class Slime : MonoBehaviour
             if (!attacked && attackTimer < 1.5f){
                 attacked = true;
                 // audio.Play("ZombieLive", this.gameObject.transform.position);
-                audio.Play("SlimeDestroy", this.gameObject.transform.position);
+                if(fly){
+                    audio.Play("BatAttack", this.gameObject.transform.position);
+                }
+                else{
+                    audio.Play("SlimeDestroy", this.gameObject.transform.position);
+                }
                 //Debug.Log(attacked);
                 StartCoroutine(dealDamage(0f));
             }
