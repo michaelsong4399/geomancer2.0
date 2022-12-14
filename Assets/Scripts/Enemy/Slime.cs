@@ -164,7 +164,6 @@ public class Slime : MonoBehaviour
                 anim.Play("zattack", -1, 0f);
                 // audio.Play("ZombieHit", this.gameObject.transform.position);
                 attackTimer = ATTACK_DELAY;
-                StartCoroutine(dealDamage(0.1f));
             }
         }
         else if (attackTimer > 0f)
@@ -174,7 +173,8 @@ public class Slime : MonoBehaviour
                 attacked = true;
                 // audio.Play("ZombieLive", this.gameObject.transform.position);
                 audio.Play("SlimeDestroy", this.gameObject.transform.position);
-                Debug.Log(attacked);
+                //Debug.Log(attacked);
+                StartCoroutine(dealDamage(0f));
             }
         }
         else
@@ -182,6 +182,7 @@ public class Slime : MonoBehaviour
             anim.Play("zattack", -1, 0f);
             attackTimer = ATTACK_DELAY;
             attacked = false;
+            //StartCoroutine(dealDamage(0.1f));
         }
     }
     public void applyDamage (float damage)

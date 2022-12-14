@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIUpdater : MonoBehaviour
 {
     TextMeshProUGUI tmp;
-    Image screenOverlay;
+    public Image screenOverlay;
     StatsRecorder stats;
     SaveSerial save;
     
