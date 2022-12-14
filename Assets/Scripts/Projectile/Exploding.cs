@@ -31,7 +31,7 @@ public class Exploding : MonoBehaviour
                     // Apply damage but disregard y
                     Vector3 pos = hitCollider.gameObject.transform.position;
                     pos.y = gameObject.transform.position.y;
-                    hitCollider.gameObject.GetComponent<Slime>().applyDamage(1f + 4f*(explosionRadius - Vector3.Distance(gameObject.transform.position, pos)));
+                    hitCollider.gameObject.GetComponent<Slime>().applyDamage(1f + 3f*(explosionRadius - Vector3.Distance(gameObject.transform.position, pos)));
                 }
             }
             //Destroy(replacement, 2.0f);
