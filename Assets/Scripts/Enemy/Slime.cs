@@ -18,7 +18,6 @@ public class Slime : MonoBehaviour
     public ParticleSystem fire;
     private ParticleSystem particlePrefab;
     public Animator anim;
-    // public Animator banim;
     private Color initColor;
     private StatsRecorder stats;
     public int pointValue;
@@ -32,6 +31,7 @@ public class Slime : MonoBehaviour
     private float FIRE_SPEED_MULTIPLIER = 0.5f;
     private float baseSpeed = 0.05f;
     public bool fly = false;
+    private bool playedSound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -149,12 +149,20 @@ public class Slime : MonoBehaviour
             gameObject.transform.position += direction*speed*Time.deltaTime;
             fire.transform.position = gameObject.transform.position;
 
+            // If within 10 frames of player, play sound
+            if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 10f && !playedSound)
+            {
+                audio.Play("ZombieHit", this.gameObject.transform.position);
+                playedSound = true;
+            }
+
             // Check if within range of player
             if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 5f)
             {
                 reachedPlayer = true;
                 // Play attack animation
                 anim.Play("zattack", -1, 0f);
+                // audio.Play("ZombieHit", this.gameObject.transform.position);
                 attackTimer = ATTACK_DELAY;
                 StartCoroutine(dealDamage(0.1f));
             }
