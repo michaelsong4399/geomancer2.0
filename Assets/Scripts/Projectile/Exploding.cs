@@ -25,7 +25,7 @@ public class Exploding : MonoBehaviour
             foreach (var hitCollider in hitColliders)
             {
                 //Debug.Log(hitCollider.gameObject.name);
-                if (hitCollider.gameObject.tag == "Slime_Base" || hitCollider.gameObject.tag == "Slime_Silver" || hitCollider.gameObject.tag == "Slime_Gold")
+                if (hitCollider.gameObject.tag == "Slime_Base" || hitCollider.gameObject.tag == "Slime_Silver" || hitCollider.gameObject.tag == "Slime_Gold" || hitCollider.gameObject.tag == "Bat_Base")
                 {
                     // hitCollider.gameObject.GetComponent<Slime>().applyDamage(1f + 9f*(explosionRadius - Vector3.Distance(gameObject.transform.position, hitCollider.gameObject.transform.position)));
                     // Apply damage but disregard y

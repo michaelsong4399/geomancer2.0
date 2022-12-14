@@ -49,7 +49,7 @@ MonoBehaviour:
   rend: {fileID: 6868478091458262730}
   rockTag: Rock
   fire: {fileID: 8680418190498535603, guid: 09a236a2bda69c4499316c84e658cc2f, type: 3}
-  anim: {fileID: 9185622204442240898}
+  anim: {fileID: 5866666021909216657, guid: a9eaab31e4766db4f8451be4d974d051, type: 3}
   pointValue: 300
   health: 1
   onFire: 0
@@ -143,16 +143,15 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7a0afe463286745a79e905c5398dd6d8, type: 2}
+    - target: {fileID: 8161309213412617433, guid: 1ec1ef7eea6084ddeae86bd45ffe108e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a6f3ac995328504481b0922c7abbec0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ec1ef7eea6084ddeae86bd45ffe108e, type: 3}
 --- !u!4 &2997654002017353208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ec1ef7eea6084ddeae86bd45ffe108e, type: 3}
-  m_PrefabInstance: {fileID: 3320128277069748755}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &9185622204442240898 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1ec1ef7eea6084ddeae86bd45ffe108e, type: 3}
   m_PrefabInstance: {fileID: 3320128277069748755}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &6868478091458262730 stripped

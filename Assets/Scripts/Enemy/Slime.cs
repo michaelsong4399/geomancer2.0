@@ -49,6 +49,7 @@ public class Slime : MonoBehaviour
         if(fly){
             // banim = gameObject.GetComponentInChildren<Animator>();
             anim.Play("bfly", -1, Random.Range(0, 1f)); //randomizes anim start frame
+            anim.SetBool("Attack",false);
         }
         else{
             // anim = gameObject.GetComponentInChildren<Animator>();
@@ -121,6 +122,10 @@ public class Slime : MonoBehaviour
         if (onDestroy){
             return;
         }
+        if (player.GetComponent<Player>().isDead)
+        {
+            return;
+        }
         if (hp <= 0)
             {
                 // Instantiate particle 
@@ -166,7 +171,9 @@ public class Slime : MonoBehaviour
                 // Play attack animation
                 // if flying, play different animation
                 if(fly){
+                    anim.SetBool("Attack",true);
                     anim.Play("battack", -1, 0f);
+                    //anim.SetBool("Attack", true);
                 }
                 else{
                     anim.Play("zattack", -1, 0f);
@@ -189,7 +196,13 @@ public class Slime : MonoBehaviour
         }
         else
         {
-            anim.Play("zattack", -1, 0f);
+            if(fly){
+                //anim.SetBool("Attack", true);
+                anim.SetBool("Attack",true);
+                anim.Play("battack", -1, 0f);
+            }else{
+                anim.Play("zattack", -1, 0f);
+            }
             attackTimer = ATTACK_DELAY;
             attacked = false;
             //StartCoroutine(dealDamage(0.1f));

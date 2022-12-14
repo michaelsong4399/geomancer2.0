@@ -8,6 +8,7 @@ public class UIUpdater : MonoBehaviour
 {
     TextMeshProUGUI tmp;
     public Image screenOverlay;
+    public TextMeshProUGUI gameOverText;
     StatsRecorder stats;
     SaveSerial save;
     
@@ -35,5 +36,16 @@ public class UIUpdater : MonoBehaviour
     public void updateOverlay(Color32 c)
     {
         screenOverlay.color = c;
+    }
+    public void gameOver()
+    {
+        if (save.getHighScore() < stats.getScore())
+        {
+            gameOverText.text = "Game Over" + "\n" + "Score: " + stats.getScore() + "\n" + "New High Score!";
+        }
+        else
+        {
+            gameOverText.text = "Game Over" + "\n" + "Score: " + stats.getScore() + "\n" + "High Score: " + save.getHighScore();
+        }
     }
 }
